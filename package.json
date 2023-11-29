@@ -2,7 +2,7 @@
   "name": "my-package-name",
   "version": "0.0.1",
   "scripts": {
-    "dev": "node --watch --inspect --require ts-node/register -- src/main.ts",
+    "dev": "node --env-file=.env --watch --inspect --require ts-node/register -- src/main.ts | pino-pretty",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "git:hooks": "husky install",
@@ -14,7 +14,12 @@
     "test": "node --test --require ts-node/register -- ./test/*.test.ts"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@prisma/client": "^5.6.0",
+    "envalid": "^8.0.0",
+    "fastify": "^4.24.3",
+    "lodash": "^4.17.21",
+    "nanoid": "^5.0.3",
+    "prisma": "^5.6.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.0.0",

@@ -6,14 +6,8 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": ".",
-    "declaration": true,
     "sourceMap": true,
     "outDir": "dist",
-    "incremental": true,
-    "paths": {
-      "@self/*": [
-        "src/*"
-      ]
-    }
+    "incremental": true
   }
 }
