@@ -1,0 +1,29 @@
+{
+  "configurations": [
+    {
+      "name": "main",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "docker",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "localRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "remoteRoot": "/home/node",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}

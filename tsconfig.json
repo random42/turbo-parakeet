@@ -1,0 +1,19 @@
+{
+  "extends": "@tsconfig/node20",
+  "include": [
+    "src"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "incremental": true,
+    "paths": {
+      "@self/*": [
+        "src/*"
+      ]
+    }
+  }
+}
