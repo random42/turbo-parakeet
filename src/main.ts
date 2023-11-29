@@ -1,15 +1,13 @@
+import 'dotenv/config';
 import createApp from './app';
-import loadConfig from './config';
 
 async function main() {
-  const config = await loadConfig();
-  const { port } = config;
-  const app = await createApp(config);
+  const app = await createApp();
   const { log } = app;
   await app.listen({
-    port,
+    port: 3000,
   });
-  // log.info(`Server listening at: ${port}`);
+  log.info(`Swagger at: http://localhost:3000/api`);
 }
 
 main().catch(console.log);

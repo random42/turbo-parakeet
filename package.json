@@ -2,9 +2,11 @@
   "name": "my-package-name",
   "version": "0.0.1",
   "scripts": {
-    "dev": "node --env-file=.env --watch --inspect --require ts-node/register -- src/main.ts | pino-pretty",
+    "dev": "tsnd --clear --inspect -- src/main.ts | pino-pretty",
     "prebuild": "rimraf dist",
     "build": "tsc",
+    "db:types": "prisma generate",
+    "db:sync": "prisma db push",
     "git:hooks": "husky install",
     "prepare": "run-s build git:hooks",
     "format": "prettier --check '{src,test}/**/*.ts'",
@@ -14,7 +16,12 @@
     "test": "node --test --require ts-node/register -- ./test/*.test.ts"
   },
   "dependencies": {
+    "@fastify/swagger": "^8.12.0",
+    "@fastify/swagger-ui": "^1.10.1",
+    "@fastify/type-provider-typebox": "^3.5.0",
     "@prisma/client": "^5.6.0",
+    "@sinclair/typebox": "^0.31.28",
+    "dotenv": "^16.3.1",
     "envalid": "^8.0.0",
     "fastify": "^4.24.3",
     "lodash": "^4.17.21",
@@ -25,6 +32,7 @@
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
     "@tsconfig/node20": "^20.1.2",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20.8.7",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
@@ -34,6 +42,7 @@
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   },
   "engines": {

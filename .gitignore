@@ -5,6 +5,7 @@ dev/*
 node_modules/
 config/
 *.env
+*.db
 
 .history
 
