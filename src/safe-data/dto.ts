@@ -20,8 +20,8 @@ export const schema = Type.Object({
 export const upsertSchema = Type.Object({
   id,
   encryption_key: key,
-  data: Type.Any(),
+  value: Type.Any(),
 });
 
-export type SafeData = Static<typeof schema>;
-export type UpsertSafeData = Static<typeof upsertSchema>;
+export type SafeDataDto = Static<typeof schema>;
+export type UpsertSafeDataDto = Static<typeof upsertSchema>;
