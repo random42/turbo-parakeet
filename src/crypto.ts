@@ -12,7 +12,6 @@ const DATA_POS = IV_LEN + AUTH_TAG_LEN;
 
 const { SALT } = process.env;
 
-console.log({ KEY_LEN, IV_LEN });
 assert(SALT);
 
 const getKey = async (password: string) => {

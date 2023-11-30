@@ -38,7 +38,7 @@ export default (app: Application) => {
           data,
         },
       });
-      res.send('ok');
+      res.send('OK');
     },
   );
 
