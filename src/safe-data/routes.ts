@@ -26,7 +26,7 @@ export default (app: Application) => {
         Buffer.from(JSON.stringify(body.value)),
         key,
       );
-      const stored = await db.safeData.upsert({
+      await db.safeData.upsert({
         where: {
           id,
         },
@@ -43,7 +43,7 @@ export default (app: Application) => {
   );
 
   /**
-   * Usually I would GET /safe-data/:id
+   * Usually I would do GET /safe-data/:id
    * but since there is a key to be sent
    * I preferred putting the parameters in the body
    */
@@ -68,16 +68,17 @@ export default (app: Application) => {
       }
       // fetch data
       // could be optimized by using equality in case wildcard is not present
-      const stored = await db.safeData.findMany({
+      const items = await db.safeData.findMany({
         where: {
           id: {
             startsWith: search,
           },
         },
       });
+      req.log.info({ id, items: items.length });
       // decrypt many items concurrently
       const data = await Promise.all(
-        stored.map(async (x) => {
+        items.map(async (x) => {
           try {
             const decrypted = await crypto.decrypt(x.data, key);
             const value = JSON.parse(decrypted.toString());
@@ -93,9 +94,10 @@ export default (app: Application) => {
           }
         }),
       );
-      // filter out decryption errors
-      const result = data.filter((x) => x) as SafeDataDto[];
-      res.send(result);
+      // filter out decryption errors (undefined values)
+      const results = data.filter((x) => x) as SafeDataDto[];
+      req.log.info({ id, results: results.length });
+      res.send(results);
       // const data = await db.
     },
   );

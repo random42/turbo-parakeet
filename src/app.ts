@@ -11,6 +11,7 @@ export default async () => {
     genReqId: () => nanoid(),
     requestIdHeader: 'x-req-id',
     logger: {
+      level: process.env.LOG_LEVEL ?? 'info',
       nestedKey: 'data',
     },
   }).withTypeProvider<TypeBoxTypeProvider>();
