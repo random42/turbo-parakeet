@@ -10,11 +10,10 @@ test('main', async (t) => {
   t.beforeEach(async () => {
     await db.safeData.deleteMany();
   });
-  const key = nanoid();
-  const key1 = nanoid();
 
   await t.test('put and get', async (t) => {
     const id = nanoid();
+    const key = nanoid();
     const value = {
       some: 'data',
     };
