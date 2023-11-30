@@ -7,9 +7,8 @@ test('main', async (t) => {
   const { nanoid } = await import('nanoid');
   const app = await createApp();
   // delete all records before each test
-  t.beforeEach(async () => {
-    await db.safeData.deleteMany();
-  });
+  t.beforeEach(() => db.safeData.deleteMany());
+  t.after(() => db.safeData.deleteMany());
 
   await t.test('put and get', async (t) => {
     const id = nanoid();
